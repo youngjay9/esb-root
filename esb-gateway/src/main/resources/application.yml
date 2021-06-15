@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: ESB-GATEWAY
+  # 需要先啟動本機的 consul server
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true # Register as a service in consul
+        enabled: true # Is service discovery enabled
+        prefer-ip-address: true # Use ip address rather than hostname during registration
+        port: ${SERVER_PORT:${server.port}} # Port to register the service under
+        instance-id: ESB-GATEWAY # Unique service instance id
+        service-name: ESB-GATEWAY
+
+    gateway:
+      gateway:
+        routes:
+          - id: ESB-BANKS
+            uri: lb://ESB-BANKS # spring.application.name
+            predicates:
+              - Path=/deposit/**
+            filters:
+              - RewritePath=/deposit/(?<path>.*), /$\{path}
+
+server:
+  port: 9090
