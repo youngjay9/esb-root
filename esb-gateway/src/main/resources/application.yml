@@ -15,14 +15,20 @@ spring:
         service-name: ESB-GATEWAY
 
     gateway:
-      gateway:
-        routes:
+      # 開啟 gateway routing 功能
+      discovery:
+        locator:
+          enabled: true
+      # 定義 routing 路徑
+      routes:
           - id: ESB-BANKS
             uri: lb://ESB-BANKS # spring.application.name
             predicates:
               - Path=/deposit/**
             filters:
               - RewritePath=/deposit/(?<path>.*), /$\{path}
+
+
 
 server:
   port: 9090

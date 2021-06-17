@@ -12,8 +12,4 @@ public class ESBBanksApplication {
     SpringApplication.run(ESBBanksApplication.class, args);
   }
 
-  @RequestMapping(method = RequestMethod.GET, value = "/deposit")
-  public void getDeposit(){
-      System.out.println("ESB-BANKS getDeposit!!");
-  }
 }
