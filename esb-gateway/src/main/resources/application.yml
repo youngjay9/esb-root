@@ -24,13 +24,20 @@ spring:
           lower-case-service-id: true # 路由的路徑對應，預設會使用大寫 ID，改用小寫 ID
 
       # 定義 routing 路徑
-      routes:
-          - id: ESB-BANKS # 每個路由設定會有個 route_id 作為識別
-            predicates:
-              - Path=/deposit/** # http://localhost:9090/deposit/xxxx 的請求，會轉給服務 ID 為 ESB-BANKS
-              filters:
-                - RewritePath=/deposit/(?<path>.*), /$\{path}
-            uri: lb://ESB-BANKS # spring.application.name
+#      routes:
+#          # 每個路由設定會有個 route_id 作為識別
+#          - id: ESB-BANKS
+#            predicates:
+#            - Path=/deposit/** # http://localhost:9090/deposit/xxxx 的請求，會轉給服務 ID 為 ESB-BANKS
+#            filters:
+#            - RewritePath=/deposit/(?<path>.*), /$\{path}
+#            uri: lb://ESB-BANKS # spring.application.name
+
+logging:
+  level:
+    com.netflix: debug
+    org.springframework.web: debug
+    com.jay.esb: info
 
 
 
