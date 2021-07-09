@@ -1,0 +1,27 @@
+server:
+  port: 9092
+
+spring:
+  application:
+    name: ESB-FEP
+  # 需要先啟動本機的 consul server
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        register: true # Register as a service in consul
+        enabled: true # Is service discovery enabled
+        prefer-ip-address: true # Use ip address rather than hostname during registration
+        port: ${SERVER_PORT:${server.port}} # Port to register the service under
+        instance-id: ESB-FEP # Unique service instance id
+        service-name: ESB-FEP
+
+
+
+
+logging:
+  level:
+    com.netflix: debug
+    org.springframework.web: debug
+    com.jay.esb: info

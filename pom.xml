@@ -11,6 +11,7 @@
   <modules>
     <module>esb-gateway</module>
     <module>esb-banks</module>
+    <module>esb-fep</module>
   </modules>
 
   <parent>

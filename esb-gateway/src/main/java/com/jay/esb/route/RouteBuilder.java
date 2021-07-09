@@ -3,9 +3,9 @@ package com.jay.esb.route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 public class RouteBuilder {
 
   @Bean
@@ -13,6 +13,7 @@ public class RouteBuilder {
     return builder.routes()
         .route("deposit", r -> r.path("/deposit/**")
             .uri("lb://ESB-BANKS"))
+        .route("fep", r -> r.path("/fep/**").uri("lb://ESB-FEP"))
         .build();
   }
 }

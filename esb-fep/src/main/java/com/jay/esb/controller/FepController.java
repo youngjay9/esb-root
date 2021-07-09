@@ -7,13 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="deposit")
-public class DepositController {
+@RequestMapping(value="fep")
+public class FepController {
+  final Logger logger = LoggerFactory.getLogger(FepController.class);
 
-  final Logger logger = LoggerFactory.getLogger(DepositController.class);
-
-  @RequestMapping(method = RequestMethod.GET, value = "/getAccount")
-  public void getDeposit(){
-    logger.info("DepositController getDeposit!!");
+  @RequestMapping(method = RequestMethod.GET, value = "/pay")
+  public void pay(){
+    logger.info("FEPController pay!!");
   }
 }
