@@ -28,6 +28,8 @@ public class VIPCustomerPredicateFactory extends
   public Predicate<ServerWebExchange> apply(VIPCustomerPredicateFactory.Config config) {
     return (ServerWebExchange s) -> {
 
+      logger.info("request path: {}", s.getRequest().getPath());
+
       List<HttpCookie> cookies = s.getRequest().getCookies().get(config.getVipCustomerCookie());
 
       boolean isVip;
