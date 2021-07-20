@@ -2,7 +2,7 @@ package com.jay.esb.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Account {
   String message;
 
