@@ -4,13 +4,24 @@ import org.springframework.stereotype.Component;
 
 
 public class Account {
-  String message;
 
-  public String getMessage() {
-    return message;
+  private String accountId;
+
+  private String accountName;
+
+  public String getAccountId() {
+    return accountId;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
+  }
+
+  public String getAccountName() {
+    return accountName;
+  }
+
+  public void setAccountName(String accountName) {
+    this.accountName = accountName;
   }
 }

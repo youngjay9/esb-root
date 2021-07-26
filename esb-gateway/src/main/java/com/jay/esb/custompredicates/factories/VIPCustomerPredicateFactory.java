@@ -24,6 +24,11 @@ public class VIPCustomerPredicateFactory extends
     super(Config.class);
   }
 
+  /**
+   * 讀取 cookie 判斷客戶的身份別,分流至對應的 server
+   * @param config
+   * @return
+   */
   @Override
   public Predicate<ServerWebExchange> apply(VIPCustomerPredicateFactory.Config config) {
     return (ServerWebExchange s) -> {
@@ -37,9 +42,13 @@ public class VIPCustomerPredicateFactory extends
         isVip = false;
       } else {
         String vipCustomerCookie = cookies.get(0).getValue();
+        logger.info("vipCustomerCookie: {}", vipCustomerCookie);
         isVip = "jay-hung".equals(vipCustomerCookie) ? true : false;
       }
-      return isVip;
+
+      logger.info("isVip:{}", isVip);
+
+      return true;
     };
   }
 
