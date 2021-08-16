@@ -32,5 +32,9 @@ public class DepositController {
       logger.info("DepositController saveAccount accountName:{}", account.getAccountName());
   }
 
+  @RequestMapping(value="/delAccount",method = RequestMethod.PUT)
+  public void delAccount(@RequestBody Account account) {
+    logger.info("DepositController delAccount accountName:{}", account.getAccountName());
+  }
 
 }
