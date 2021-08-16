@@ -37,12 +37,13 @@ public class RoutesDefinitionController {
 
     routeDefinition.setPredicates(predicates);
 
+    // POST /actuator/gateway/routes/{id} ==> 新增一個 RouteDefinition
     HttpEntity<RouteDefinition> request = new HttpEntity<>(routeDefinition);
     String url = "http://localhost:9090/actuator/gateway/routes/delAccount";
 
     ResponseEntity<Void> obj = restTemplate.postForEntity(url, request, Void.class);
 
-    // refresh route cache
+    // POST /actuator/gateway/refresh ==> 執行 refresh route cache, 上面新增的 route 才會生效
     restTemplate.postForEntity("http://localhost:9090/actuator/gateway/refresh", Void.class, Void.class);
   }
 
@@ -50,13 +51,12 @@ public class RoutesDefinitionController {
   public void deleteRoute() {
     logger.info("deleteRoute!!");
 
+    // DELETE /actuator/gateway/routes/{id} ==> 刪除一個 RouteDefinition
     RestTemplate restTemplate = new RestTemplate();
-
     String url = "http://localhost:9090/actuator/gateway/routes/delAccount";
-
     restTemplate.delete(url);
 
-    // refresh route cache
+    // POST /actuator/gateway/refresh ==> 執行 refresh route cache, 上面刪除的 route 才會生效
     restTemplate.postForEntity("http://localhost:9090/actuator/gateway/refresh", Void.class, Void.class);
 
   }
